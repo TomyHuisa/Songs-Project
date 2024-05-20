@@ -11,10 +11,12 @@ def dict_factory(cursor, row):
 #constants with name and location of database
 db_folder = current_app.instance_path
 db_name = 'data.sqlite'
+db_file = os.path.join(db_folder,db_name)
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
-            current_app.config['DATABASE'],
+            db_file,
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = dict_factory

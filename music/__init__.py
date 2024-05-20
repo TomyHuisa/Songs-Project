@@ -1,5 +1,6 @@
 from flask import Flask, send_file, render_template
 
+
 app = Flask(__name__)
 #
 with app.app_context():
@@ -20,11 +21,8 @@ def songs():
     
     return pagina
 
-def create_app():
-    app = ...
-    # existing code omitted
 
-    from . import db
-    db.init_app(app)
+from . import db
+db.init_app(app)
 
-    return app
+    
