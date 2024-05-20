@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista de Music</title>
+    <title>Lista de Musicas</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -13,8 +13,8 @@
   <body>
     <h1>Music</h1>
     <ul>
-      {% for artist in artists %}
-      <li>{{artists['Name']}}</li>
+      {% for artist in ask %}
+      <li>{{artist['Name']}}</li>
       {%endfor%}
     </ul>
   </body>

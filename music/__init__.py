@@ -17,7 +17,7 @@ def songs():
     
     result = data_base.execute(ask)
     list_of_result = result.fetchall()
-    pagina = render_template("songs.html", songs=list_of_result)
+    pagina = render_template("songs.html", ask=list_of_result)
     
     return pagina
 
