@@ -7,7 +7,7 @@ with app.app_context():
     from . import db
     db.init_app(app)
 
-@app.route('/themes')
+@app.route('/artist')
 def songs():
     data_base = db.get_db() #Consigue la base de datos que estaba en db.py#
     ask = """
@@ -21,8 +21,8 @@ def songs():
     
     return pagina
 
+from . import artists
+app.register_blueprint(artists.bp)
 
-from . import db
-db.init_app(app)
 
     

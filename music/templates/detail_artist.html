@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Musicas</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Artista</h1>
+    <ul>
+      {% for artist in ask %}
+      <li>{{artist['Name']}}</li>
+      {%endfor%}
+    </ul>
+    <h2>Musicas</h2>
+  </body>
+</html>

@@ -31,6 +31,13 @@ def close_db(e=None):
         db.close()
 
 def init_db():
+    # ensure the instance folder exists
+    
+    try:
+        os.makedirs(db_folder)
+    except OSError:
+        pass
+
     db = get_db()
 
     with current_app.open_resource('data.sql') as f:
