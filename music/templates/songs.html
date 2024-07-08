@@ -14,7 +14,11 @@
     <h1>Artistas</h1>
     <ul>
       {% for artist in ask %}
-      <li>{{artist['Name']}}</li>
+      <li>
+        <a href="{{url_for('artists.detalle', id= artist['albumId']) }}">
+          {{album['Name']}}
+        </a>
+      </li>
       {%endfor%}
     </ul>
   </body>
