@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from . import db
 
-bp = Blueprint('artists', __name__, url_prefix='/artists')
+bp = Blueprint('artist', __name__, url_prefix='/artist')
 @bp.route('/<int:id>')
 def detalle(id):
     con = db.get_db()
