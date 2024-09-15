@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block title %}Detalles de Artistas{% endblock %} {%
+block header %}albums de {{ artista ['name']}} {% endblock %} {% block content %}
+<ul>
+  {%for music in musicas %}
+  <li> <a href="{{url_for('albums.detalle', id=music['AlbumId'])}}">{{ music['title']}}</a></li>
+  {%endfor%}
+</ul>
+{% endblock %}

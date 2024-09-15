@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block title %}Lista de Canciones{% endblock %} {%
+block header %}Tracks{% endblock %} {% block content %}
+<ul>
+  {% for track in canciones %}
+  <li>
+    <a href="{{url_for('tracks.detalle', id=track['TrackId'])}}"
+      >{{track['name']}}</a
+    >
+  </li>
+  {%endfor%}
+</ul>
+{% endblock %}
