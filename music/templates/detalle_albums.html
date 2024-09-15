@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block title %}Detalles de Albums{% endblock %} {%
+block header %}Canciones de {{ albums ['title']}} {% endblock %} {% block content %}
+<ul>
+  {%for cancion in canciones %}
+  <li> <a href="{{url_for('canciones.detalle', id=cancion['TrackId'])}}">{{ cancion['name']}}</li>
+  {%endfor%}
+</ul>
+{% endblock %}
