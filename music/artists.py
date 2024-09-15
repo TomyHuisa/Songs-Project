@@ -1,53 +1,35 @@
-from flask import Blueprint, redirect, render_template, request, url_for
-from . import db
+from flask import Blueprint,render_template
+from . import db 
+bp = Blueprint('artist',__name__, url_prefix= '/artist')
 
-consulta = """
-
-            SELECT Name FROM artists
-
-           """
-
-res = con.execute(consulta, (id,))
-artist = res.fetchall()
-pagina = render_template('songs.html',
-                        artists=artist)
-
-bp = Blueprint('artist', __name__, url_prefix='/artist')
 @bp.route('/<int:id>')
 def detalle(id):
     con = db.get_db()
     consulta1 = """
-                    SELECT Name FROM artists
-                    WHERE ArtistId = ?;
-                """
+        SELECT name FROM artists WHERE ArtistId = ?;
+    """
     consulta2 = """
-                    SELECT a.Title FROM albums a
-                    JOIN artists ar ON ar.ArtistId = a.ArtistId
-                    WHERE a.ArtistId = ?;
-                """
+        SELECT AlbumId ,Title FROM albums WHERE ArtistId = ?;
+    """
     
     res = con.execute(consulta1, (id,))
-    artist = res.fetchone()
+    artista = res.fetchone()
     res = con.execute(consulta2, (id,))
-    albumlist = res.fetchall()
-    pagina = render_template('detail_artist.html',
-                            artist=artist,
-                            albums=albumlist)
+    lista_artist= res.fetchall()
+    pagina = render_template('detalle_artist.html', 
+                            artista=artista,   
+                            artists=lista_artist)
     return pagina
 
-@bp.route('/new', methods=('GET', 'POST'))
-def nuevo():
-    if request.method == 'POST':
-        Name = request.form['Name']
-        
-        con = db.get_db()
-        consulta = """
-                    INSERT INTO artist(Name)
-                    VALUES (?);
-                   """
-        con.execute(consulta, (Name))
-        con.commit()
-        return redirect(url_for('artist.artist'))
-    else:
-        pagina = render_template('new_artist.html')
-        return pagina
+@bp.route('/')
+def artists():
+    data_base = db.get_db() #Consigue la base de datos que estaba en db.py#
+    ask = """
+            SELECT name, ArtistId FROM artists
+            ORDER BY name ASC;
+          """
+    
+    result = data_base.execute(ask)
+    lista_de_artist = result.fetchall()
+    
+    return render_template("artists.html", artists=lista_de_artist)
